@@ -1,0 +1,19 @@
+{
+    "restartable": "rs",
+    "ignore": [
+        ".git",
+        "node_modules/",
+        "dist/",
+        "coverage/",
+        "src/apps/bookshop/frontend"
+    ],
+    "exec": "esbuild $(find ./src -path ./src/apps/bookshop/frontend -prune -o \\( -name \"*.js\" -o -name \"*.ts\" \\) -print) --outbase=. --outdir=dist --sourcemap --keep-names --platform=node --format=cjs && find ./dist -name \"*.ts\" -delete && npm run build:di && node --inspect dist/src/apps/bookshop/backend/start.js",
+    "watch": [
+        "src/"
+    ],
+    "env": {
+        "NODE_ENV": "dev"
+    },
+    "ext": "js,json,ts,tsx,css",
+    "legacyWatch": true
+}
